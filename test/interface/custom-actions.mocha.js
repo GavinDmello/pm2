@@ -9,7 +9,7 @@ var util     = require('util');
 var Cipher   = require('../../lib/Interactor/Cipher.js');
 var cst      = require('../../constants.js');
 var Plan     = require('../helpers/plan.js');
-var Interactor = require('../../lib/Interactor/InteractorDaemonizer.js');
+var Interactor = require('../../lib/Interactor/InteractorClient.js');
 
 var server = new events.EventEmitter();
 var pm2_bus;

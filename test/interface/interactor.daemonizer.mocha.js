@@ -3,7 +3,7 @@ var should               = require('should');
 var fs                   = require('fs');
 var os                   = require('os');
 var default_conf         = require('../../constants');
-var interactorDaemonizer = require('../../lib/Interactor/InteractorDaemonizer');
+var InteractorClient = require('../../lib/Interactor/InteractorClient');
 var json5                = require('../../lib/tools/json5.js');
 
 describe('Daemonizer interactor', function() {
@@ -20,7 +20,7 @@ describe('Daemonizer interactor', function() {
 
   describe('General tests', function() {
     it('should try get set keys but get error because nothing exposed', function(done) {
-      interactorDaemonizer.getOrSetConf(default_conf, null, function(err, data) {
+      InteractorClient.getOrSetConf(default_conf, null, function(err, data) {
         err.should.not.be.null();
         done();
       });
@@ -33,7 +33,7 @@ describe('Daemonizer interactor', function() {
     });
 
     it('should set right node by default', function(done) {
-      interactorDaemonizer.getOrSetConf(default_conf, {
+      InteractorClient.getOrSetConf(default_conf, {
         secret_key : 'xxx',
         public_key : 'yyy',
         machine_name : null,
@@ -50,7 +50,7 @@ describe('Daemonizer interactor', function() {
     });
 
     it('should retrieve data from file without env variable', function(done) {
-      interactorDaemonizer.getOrSetConf(default_conf, null, function(err, data) {
+      InteractorClient.getOrSetConf(default_conf, null, function(err, data) {
         should(err).be.null();
         data.secret_key.should.eql('xxx');
         data.public_key.should.eql('yyy');
@@ -64,7 +64,7 @@ describe('Daemonizer interactor', function() {
     });
 
     it('should set new keys and write in configuration file', function(done) {
-      interactorDaemonizer.getOrSetConf(default_conf, {
+      InteractorClient.getOrSetConf(default_conf, {
         secret_key : 'XXXS2',
         public_key : 'XXXP2',
         info_node : 'test2.url'
@@ -88,7 +88,7 @@ describe('Daemonizer interactor', function() {
     });
 
     it('should retrieve data from file without env variable', function(done) {
-      interactorDaemonizer.getOrSetConf(default_conf, null, function(err, data) {
+      InteractorClient.getOrSetConf(default_conf, null, function(err, data) {
         should(err).be.null();
         data.secret_key.should.eql('XXXS2');
         data.public_key.should.eql('XXXP2');
@@ -113,7 +113,7 @@ describe('Daemonizer interactor', function() {
 
     it('should work with env variables and create file', function(done) {
 
-      interactorDaemonizer.getOrSetConf(default_conf, {
+      InteractorClient.getOrSetConf(default_conf, {
         secret_key : null,
         public_key : null,
         machine_name : null,
@@ -136,7 +136,7 @@ describe('Daemonizer interactor', function() {
     });
 
     it('should retrieve data from file without env variable', function(done) {
-      interactorDaemonizer.getOrSetConf(default_conf, null, function(err, data) {
+      InteractorClient.getOrSetConf(default_conf, null, function(err, data) {
         should(err).be.null();
         data.secret_key.should.eql('XXXS');
         data.public_key.should.eql('XXXP');

@@ -52,20 +52,21 @@ var csts = {
   CLUSTER_MODE_ID         : 'cluster_mode',
   FORK_MODE_ID            : 'fork_mode',
 
-  KEYMETRICS_ROOT_URL     : process.env.KEYMETRICS_NODE || 'root.keymetrics.io',
+  KEYMETRICS_ROOT_URL     : process.env.KEYMETRICS_NODE || 'https://root.keymetrics.io',
   KEYMETRICS_BANNER       : '../lib/keymetrics',
-  DEFAULT_MODULE_JSON     : 'package.json',
 
-  REMOTE_PORT_TCP         : isNaN(parseInt(process.env.KEYMETRICS_PUSH_PORT)) ? 80 : parseInt(process.env.KEYMETRICS_PUSH_PORT),
-  REMOTE_PORT             : 41624,
-  REMOTE_REVERSE_PORT     : isNaN(parseInt(process.env.KEYMETRICS_REVERSE_PORT)) ? 43554 : parseInt(process.env.KEYMETRICS_REVERSE_PORT),
-  REMOTE_HOST             : 's1.keymetrics.io',
-  SEND_INTERVAL           : 1000,
-  GRACEFUL_TIMEOUT        : parseInt(process.env.PM2_GRACEFUL_TIMEOUT) || 8000,
-  GRACEFUL_LISTEN_TIMEOUT : parseInt(process.env.PM2_GRACEFUL_LISTEN_TIMEOUT) || 3000,
+  PROTOCOL_VERSION        : 1,
+  COMPRESS_PROTOCOL       : false,
+  STATUS_INTERVAL         : 1000,
+
   LOGS_BUFFER             : 10,
   CONTEXT_ON_ERROR        : 2,
   AGGREGATION_DURATION    : process.env.PM2_DEBUG || process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development' ? 0 : 60 * 10,
+
+  GRACEFUL_TIMEOUT        : parseInt(process.env.PM2_GRACEFUL_TIMEOUT) || 8000,
+  GRACEFUL_LISTEN_TIMEOUT : parseInt(process.env.PM2_GRACEFUL_LISTEN_TIMEOUT) || 3000,
+
+  DEFAULT_MODULE_JSON     : 'package.json',
 
   // Concurrent actions when doing start/restart/reload
   CONCURRENT_ACTIONS      : (function() {

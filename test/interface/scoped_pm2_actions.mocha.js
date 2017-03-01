@@ -9,7 +9,7 @@ var cst           = require('../../constants.js');
 var Plan          = require('../helpers/plan.js');
 var Configuration = require('../../lib/Configuration.js');
 var Helpers       = require('../helpers/apps.js');
-var Interactor    = require('../../lib/Interactor/InteractorDaemonizer.js');
+var Interactor    = require('../../lib/Interactor/InteractorClient.js');
 var gl_interactor_process;
 
 var send_cmd = new events.EventEmitter();
